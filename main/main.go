@@ -8,6 +8,7 @@ import (
 func main() {
 	router := gin.Default()
 	networking.ValidateNumber(router)
+	networking.IssuerCheck(router)
 	err := router.Run(networking.Host)
 	if err != nil {
 		return

@@ -4,6 +4,23 @@ import (
 	"strconv"
 )
 
+func CardIssuerNameIdentifier(cardNumber string) string {
+	mii, err := strconv.Atoi(string(cardNumber[0]))
+	if err != nil {
+		return ""
+	}
+	switch mii {
+	case 4:
+		return "Visa"
+	case 5:
+		return "Master Card"
+	case 6:
+		return "Rupay"
+	default:
+		return ""
+	}
+}
+
 func IsValidCardNumber(creditCardNumber string) bool {
 	var sum = 0
 	length := len(creditCardNumber)
