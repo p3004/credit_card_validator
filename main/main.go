@@ -1,20 +1,15 @@
 package main
 
 import (
-	"credit_card_validator/validator"
-	"fmt"
-	"strconv"
+	"credit_card_validator/networking"
+	"github.com/gin-gonic/gin"
 )
 
-var creditCardNumber string
-
 func main() {
-	fmt.Println("Enter your credit card number: ")
-	_, err := fmt.Scanf("%s", &creditCardNumber)
+	router := gin.Default()
+	networking.ValidateNumber(router)
+	err := router.Run(networking.Host)
 	if err != nil {
-		fmt.Println(err.Error())
 		return
 	}
-	isValid := validator.IsValidCardNumber(creditCardNumber)
-	fmt.Println("Credit card number " + creditCardNumber + " is " + strconv.FormatBool(isValid))
 }
